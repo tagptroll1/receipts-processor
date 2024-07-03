@@ -33,6 +33,7 @@ var points = sync.Map{}
 var ErrFailedToCreateReceipt = errors.New("failed to create receipt")
 var ErrReceiptNotFound = errors.New("receipt not found")
 var ErrFailedToFetchPoints = errors.New("failed to cast receipt points to int")
+var ErrPointNotReady = errors.New("points are not ready yet, try again later")
 
 // NewReceipt generated an empty recept with a new random uuid id
 func SaveNewReceipt(ctx context.Context, rec Receipt) (string, []error) {
@@ -114,5 +115,5 @@ func GetReceiptPoints(_ context.Context, id string) (int, error) {
 		}
 	}
 
-	return 0, ErrReceiptNotFound
+	return 0, ErrPointNotReady
 }
